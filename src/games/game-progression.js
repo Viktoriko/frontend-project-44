@@ -2,7 +2,7 @@ import { MAX_ROUNDS } from '../consts.js';
 import { checkingAnswer, getAnswer, isCorrectAnswer } from '../index.js';
 
 const gameProgression = (username) => {
-  console.log('Find the greatest common divisor of given numbers.');
+  console.log('What number is missing in the progression?');
 
   let i = 0;
 
