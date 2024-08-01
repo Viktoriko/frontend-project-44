@@ -15,3 +15,6 @@ lint-fix:
 
 game-even:
 	node bin/brain-even.js
+
+game-calc:
+	node bin/brain-calc.js
