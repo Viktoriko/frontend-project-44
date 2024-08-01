@@ -9,3 +9,9 @@ publish:
 
 lint:
 	npx eslint .
+
+lint-fix:
+	npx eslint . --fix
+
+game-even:
+	node bin/brain-even.js
