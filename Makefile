@@ -18,3 +18,6 @@ game-even:
 
 game-calc:
 	node bin/brain-calc.js
+
+game-gcd:
+	node bin/brain-gcd.js
