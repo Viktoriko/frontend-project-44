@@ -2,7 +2,7 @@
 
 ## Записи
 * [Игра "Проверка на чётность"](https://asciinema.org/a/l0K0D8fmdHe2WIfM24ZAEPOIR)
-
+* [Игра "Калькулятор"](https://asciinema.org/a/ZjQ9IFAMTNWjw50VDJgmErzEC)
 
 ### Hexlet tests and linter status:
 [![Actions Status](https://github.com/Viktoriko/frontend-project-44/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/Viktoriko/frontend-project-44/actions)
