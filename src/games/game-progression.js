@@ -1,5 +1,6 @@
 import { MAX_ROUNDS } from '../consts.js';
 import { checkingAnswer, getAnswer, isCorrectAnswer } from '../index.js';
+import buildProgressionArr from '../libs/build-progression-arr.js';
 
 const gameProgression = (username) => {
   console.log('What number is missing in the progression?');
@@ -9,20 +10,11 @@ const gameProgression = (username) => {
   while (i < MAX_ROUNDS) {
     const lengthProgression = Math.floor(Math.random() * (10 - 5 + 1)) + 5;
     const stepProgression = Math.floor(Math.random() * 50) + 1;
-    const space = Math.floor(Math.random() * lengthProgression) + 1;
-    let currentNum = Math.floor(Math.random() * 50);
-    let correctAnswer = 0;
-    const questionArr = [];
+    const space = Math.floor(Math.random() * lengthProgression);
+    const questionArr = buildProgressionArr(lengthProgression, stepProgression);
+    const correctAnswer = questionArr[space];
 
-    for (let j = 1; j <= lengthProgression; j += 1) {
-      if (space === j) {
-        questionArr.push('..');
-        correctAnswer = currentNum;
-      } else {
-        questionArr.push(currentNum);
-      }
-      currentNum += stepProgression;
-    }
+    questionArr.splice(space, 1, '..');
 
     const question = questionArr.join(' ');
 

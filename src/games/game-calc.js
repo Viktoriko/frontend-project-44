@@ -1,5 +1,7 @@
 import { MAX_ROUNDS } from '../consts.js';
 import { checkingAnswer, getAnswer, isCorrectAnswer } from '../index.js';
+import getCalcAnswer from '../libs/get-calc-answer.js';
+import getOperator from '../libs/get-operator.js';
 
 const gameCalc = (username) => {
   console.log('What is the result of the expression?');
@@ -11,26 +13,8 @@ const gameCalc = (username) => {
     const randomNumberTwo = Math.floor(Math.random() * 50);
     const randomOperator = Math.floor(Math.random() * 3);
 
-    let operator; let
-      correctAnswer;
-
-    switch (randomOperator) {
-      case 0:
-        operator = '+';
-        correctAnswer = randomNumberOne + randomNumberTwo;
-        break;
-      case 1:
-        operator = '-';
-        correctAnswer = randomNumberOne - randomNumberTwo;
-        break;
-      case 2:
-        operator = '*';
-        correctAnswer = randomNumberOne * randomNumberTwo;
-        break;
-      default:
-        operator = '+';
-        correctAnswer = randomNumberOne + randomNumberTwo;
-    }
+    const operator = getOperator(randomOperator);
+    const correctAnswer = getCalcAnswer(operator, randomNumberOne, randomNumberTwo);
 
     const answer = getAnswer(`${randomNumberOne} ${operator} ${randomNumberTwo}`);
     const isCorrect = isCorrectAnswer(Number(answer), correctAnswer);
