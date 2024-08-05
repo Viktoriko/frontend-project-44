@@ -1,4 +1,6 @@
-import { checkingAnswer, getAnswer, isCorrectAnswer } from '../index.js';
+import {
+  checkingAnswer, getAnswer, isCorrectAnswer, runWinMessage,
+} from '../index.js';
 import { MAX_ROUNDS } from '../consts.js';
 
 const roundsOneNumQuestion = (username, funcGetCorrectAnswer) => {
@@ -17,7 +19,7 @@ const roundsOneNumQuestion = (username, funcGetCorrectAnswer) => {
     }
   }
 
-  console.log(`Congratulations, ${username}!`);
+  runWinMessage(username);
 };
 
 export default roundsOneNumQuestion;

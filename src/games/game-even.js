@@ -1,11 +1,14 @@
 import roundsOneNumQuestion from '../libs/rounds-one-num-question.js';
+import { askQuestion, knowledgeUser } from '../index.js';
+import { GAME_EVEN } from '../consts.js';
+import isEven from '../libs/is-even.js';
 
-const gameEven = (username) => {
-  const isEven = (number) => number % 2 === 0;
+const runGameEven = () => {
+  const username = knowledgeUser();
 
-  console.log('Answer "yes" if the number is even, otherwise answer "no".');
+  askQuestion(GAME_EVEN);
 
   roundsOneNumQuestion(username, isEven);
 };
 
-export default gameEven;
+export default runGameEven;

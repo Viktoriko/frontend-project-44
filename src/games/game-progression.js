@@ -1,9 +1,13 @@
-import { MAX_ROUNDS } from '../consts.js';
-import { checkingAnswer, getAnswer, isCorrectAnswer } from '../index.js';
+import { GAME_PROGRESSION, MAX_ROUNDS } from '../consts.js';
+import {
+  askQuestion, checkingAnswer, getAnswer, isCorrectAnswer, knowledgeUser, runWinMessage,
+} from '../index.js';
 import buildProgressionArr from '../libs/build-progression-arr.js';
 
-const gameProgression = (username) => {
-  console.log('What number is missing in the progression?');
+const runGameProgression = () => {
+  const username = knowledgeUser();
+
+  askQuestion(GAME_PROGRESSION);
 
   let i = 0;
 
@@ -28,7 +32,7 @@ const gameProgression = (username) => {
     }
   }
 
-  console.log(`Congratulations, ${username}!`);
+  runWinMessage(username);
 };
 
-export default gameProgression;
+export default runGameProgression;

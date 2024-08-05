@@ -1,10 +1,19 @@
-import { MAX_ROUNDS } from '../consts.js';
-import { checkingAnswer, getAnswer, isCorrectAnswer } from '../index.js';
+import { GAME_CALC, MAX_ROUNDS } from '../consts.js';
+import {
+  askQuestion,
+  checkingAnswer,
+  getAnswer,
+  isCorrectAnswer,
+  knowledgeUser,
+  runWinMessage,
+} from '../index.js';
 import getCalcAnswer from '../libs/get-calc-answer.js';
 import getOperator from '../libs/get-operator.js';
 
-const gameCalc = (username) => {
-  console.log('What is the result of the expression?');
+const runGameCalc = () => {
+  const username = knowledgeUser();
+
+  askQuestion(GAME_CALC);
 
   let i = 0;
 
@@ -26,7 +35,7 @@ const gameCalc = (username) => {
     }
   }
 
-  console.log(`Congratulations, ${username}!`);
+  runWinMessage(username);
 };
 
-export default gameCalc;
+export default runGameCalc;

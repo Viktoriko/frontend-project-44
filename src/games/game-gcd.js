@@ -1,9 +1,18 @@
-import { MAX_ROUNDS } from '../consts.js';
-import { checkingAnswer, getAnswer, isCorrectAnswer } from '../index.js';
+import { GAME_GCD, MAX_ROUNDS } from '../consts.js';
+import {
+  askQuestion,
+  checkingAnswer,
+  getAnswer,
+  isCorrectAnswer,
+  knowledgeUser,
+  runWinMessage,
+} from '../index.js';
 import getGsd from '../libs/get-gsd.js';
 
-const gameGcd = (username) => {
-  console.log('Find the greatest common divisor of given numbers.');
+const runGameGcd = () => {
+  const username = knowledgeUser();
+
+  askQuestion(GAME_GCD);
 
   let i = 0;
 
@@ -23,7 +32,7 @@ const gameGcd = (username) => {
     }
   }
 
-  console.log(`Congratulations, ${username}!`);
+  runWinMessage(username);
 };
 
-export default gameGcd;
+export default runGameGcd;

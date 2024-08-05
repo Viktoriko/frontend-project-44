@@ -1,6 +1,4 @@
 #!/usr/bin/env node
-import getName from '../src/cli.js';
-import { GREETING } from '../src/consts.js';
+import { knowledgeUser } from '../src/index.js';
 
-console.log(GREETING);
-getName();
+knowledgeUser();
