@@ -8,7 +8,7 @@ const greetUser = () => {
   console.log(GREETING);
 };
 
-const knowledgeUser = () => {
+export const knowledgeUser = () => {
   greetUser();
   return getName();
 };
