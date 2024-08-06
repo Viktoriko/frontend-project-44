@@ -1,38 +1,32 @@
-import { GAME_GCD, MAX_ROUNDS } from '../consts.js';
-import {
-  askQuestion,
-  checkingAnswer,
-  getAnswer,
-  isCorrectAnswer,
-  knowledgeUser,
-  runWinMessage,
-} from '../index.js';
-import getGsd from '../libs/get-gsd.js';
+import runGamePlay from '../index.js';
 
-const runGameGcd = () => {
-  const username = knowledgeUser();
+const getGsd = (a, b) => {
+  let numOne = a;
+  let numTwo = b;
 
-  askQuestion(GAME_GCD);
-
-  let i = 0;
-
-  while (i < MAX_ROUNDS) {
-    const randomNumberOne = Math.floor(Math.random() * 50);
-    const randomNumberTwo = Math.floor(Math.random() * 50);
-
-    const correctAnswer = getGsd(randomNumberOne, randomNumberTwo);
-
-    const answer = getAnswer(`${randomNumberOne} ${randomNumberTwo}`);
-    const isCorrect = isCorrectAnswer(Number(answer), correctAnswer);
-
-    i = checkingAnswer(i, isCorrect, answer, correctAnswer, username);
-
-    if (i === -1) {
-      return;
+  while (numOne !== numTwo) {
+    if (numOne > numTwo) {
+      numOne -= numTwo;
+    } else {
+      numTwo -= numOne;
     }
   }
+  return numOne;
+};
 
-  runWinMessage(username);
+const getGameOptions = () => {
+  const randomNumberOne = Math.floor(Math.random() * 50);
+  const randomNumberTwo = Math.floor(Math.random() * 50);
+
+  const correctAnswer = getGsd(randomNumberOne, randomNumberTwo);
+
+  const questionExp = `${randomNumberOne} ${randomNumberTwo}`;
+
+  return [questionExp, correctAnswer];
+};
+
+const runGameGcd = () => {
+  runGamePlay('Find the greatest common divisor of given numbers.', getGameOptions);
 };
 
 export default runGameGcd;

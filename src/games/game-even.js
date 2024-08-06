@@ -1,14 +1,14 @@
-import roundsOneNumQuestion from '../libs/rounds-one-num-question.js';
-import { askQuestion, knowledgeUser } from '../index.js';
-import { GAME_EVEN } from '../consts.js';
-import isEven from '../libs/is-even.js';
+import runGamePlay from '../index.js';
+
+const getGameOptions = () => {
+  const randomNumber = Math.floor(Math.random() * 50);
+  const correctAnswer = randomNumber % 2 === 0 ? 'yes' : 'no';
+
+  return [randomNumber, correctAnswer];
+};
 
 const runGameEven = () => {
-  const username = knowledgeUser();
-
-  askQuestion(GAME_EVEN);
-
-  roundsOneNumQuestion(username, isEven);
+  runGamePlay('Answer "yes" if the number is even, otherwise answer "no".', getGameOptions);
 };
 
 export default runGameEven;

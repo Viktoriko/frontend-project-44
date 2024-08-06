@@ -1,14 +1,27 @@
-import isPrime from '../libs/is-prime.js';
-import roundsOneNumQuestion from '../libs/rounds-one-num-question.js';
-import { askQuestion, knowledgeUser } from '../index.js';
-import { GAME_PRIME } from '../consts.js';
+import runGamePlay from '../index.js';
+
+const isPrime = (number) => {
+  if ([0, 1].includes(number)) {
+    return false;
+  }
+
+  for (let i = 2; i < number; i += 1) {
+    if (number % i === 0) {
+      return false;
+    }
+  }
+  return number !== 1;
+};
+
+const getGameOptions = () => {
+  const randomNumber = Math.floor(Math.random() * 50);
+  const correctAnswer = isPrime(randomNumber) ? 'yes' : 'no';
+
+  return [randomNumber, correctAnswer];
+};
 
 const runGamePrime = () => {
-  const username = knowledgeUser();
-
-  askQuestion(GAME_PRIME);
-
-  roundsOneNumQuestion(username, isPrime);
+  runGamePlay('Answer "yes" if given number is prime. Otherwise answer "no".', getGameOptions);
 };
 
 export default runGamePrime;

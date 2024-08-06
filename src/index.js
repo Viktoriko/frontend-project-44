@@ -1,6 +1,6 @@
 import readlineSync from 'readline-sync';
 import {
-  GAME_CALC, GAME_EVEN, GAME_GCD, GAME_PRIME, GAME_PROGRESSION, GREETING,
+  GREETING, MAX_ROUNDS,
 } from './consts.js';
 import getName from './cli.js';
 
@@ -13,26 +13,8 @@ const knowledgeUser = () => {
   return getName();
 };
 
-const askQuestion = (game) => {
-  switch (game) {
-    case GAME_CALC:
-      console.log('What is the result of the expression?');
-      break;
-    case GAME_EVEN:
-      console.log('Answer "yes" if the number is even, otherwise answer "no".');
-      break;
-    case GAME_GCD:
-      console.log('Find the greatest common divisor of given numbers.');
-      break;
-    case GAME_PRIME:
-      console.log('Answer "yes" if given number is prime. Otherwise answer "no".');
-      break;
-    case GAME_PROGRESSION:
-      console.log('What number is missing in the progression?');
-      break;
-    default:
-      console.log('I do not know such a game');
-  }
+const askQuestion = (question) => {
+  console.log(question);
 };
 
 const runWinMessage = (username) => {
@@ -45,8 +27,6 @@ const getAnswer = (question) => {
   return readlineSync.question('Your answer: ').trim().toLowerCase();
 };
 
-const isCorrectAnswer = (answer, correctAnswer) => answer === correctAnswer;
-
 const checkingAnswer = (i, isCorrect, answer, correctAnswer, username) => {
   if (isCorrect) {
     console.log('Correct!');
@@ -58,6 +38,27 @@ const checkingAnswer = (i, isCorrect, answer, correctAnswer, username) => {
   return -1;
 };
 
-export {
-  getAnswer, isCorrectAnswer, checkingAnswer, knowledgeUser, askQuestion, runWinMessage,
+const runGamePlay = (answer, getGameOptions) => {
+  const username = knowledgeUser();
+
+  askQuestion(answer);
+
+  let i = 0;
+
+  while (i < MAX_ROUNDS) {
+    const [questionExp, correctAnswer] = getGameOptions();
+
+    const userAnswer = getAnswer(questionExp);
+    const isCorrect = userAnswer === String(correctAnswer);
+
+    i = checkingAnswer(i, isCorrect, userAnswer, correctAnswer, username);
+
+    if (i === -1) {
+      return;
+    }
+  }
+
+  runWinMessage(username);
 };
+
+export default runGamePlay;
